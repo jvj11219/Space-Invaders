@@ -12,6 +12,10 @@ class AlienInvasion:
         #Initalize game and required resources
         pygame.init()
         self.settings = Settings()
+        #Change display settings to run at full-screen
+        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        self.settings.screen_width = self.screen.get_rect().width
+        self.settings.screen_height = self.screen.get_rect().height
         #Create a game window (surface) with values from Settings
         self.screen = pygame.display.set_mode((self.settings.screen_width,self.settings.screen_height))
         #Name the window Alien Invasion
@@ -56,6 +60,10 @@ class AlienInvasion:
         if event.key == pygame.K_LEFT:
             #Move ship left by setting moving_left flag to true
             self.ship.moving_left = True
+        #Q key (quit)
+        elif event.key == pygame.K_q:
+            #Exit game
+            sys.exit()
 
     def _check_keyup_events(self,event):
         #Right arrow key
