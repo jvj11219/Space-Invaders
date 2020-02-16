@@ -2,8 +2,9 @@
 import sys
 import pygame
 
-#Import settings
+#Import settings and ship
 from settings import Settings
+from ship import Ship
 
 #Create overall class to manage game assets and behaviors
 class AlienInvasion:
@@ -12,9 +13,11 @@ class AlienInvasion:
         pygame.init()
         self.settings = Settings()
         #Create a game window (surface) with values from Settings
-        self.screen = pygame.display.set_mode((self.settings.screen_width,self.settings.screen_width))
+        self.screen = pygame.display.set_mode((self.settings.screen_width,self.settings.screen_height))
         #Name the window Alien Invasion
         pygame.display.set_caption("Alien Invasion")
+        #Create an instance of Ship
+        self.ship = Ship(self)
         #Set the background color from Settings
         self.bg_color = (self.settings.bg_color) #Light grey
 
@@ -28,6 +31,8 @@ class AlienInvasion:
                     sys.exit()
             #Redraw the screenw with specified bg_color
             self.screen.fill(self.bg_color)
+            #Draw the instance of ship
+            self.ship.blitme()
             #Display the most recently drawn screen
             pygame.display.flip()
 
