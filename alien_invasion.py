@@ -2,17 +2,21 @@
 import sys
 import pygame
 
+#Import settings
+from settings import Settings
+
 #Create overall class to manage game assets and behaviors
 class AlienInvasion:
     def __init__(self):
         #Initalize game and required resources
         pygame.init()
-        #Create a game window (surface) that is 1200px by 800px
-        self.screen = pygame.display.set_mode((1200,800))
+        self.settings = Settings()
+        #Create a game window (surface) with values from Settings
+        self.screen = pygame.display.set_mode((self.settings.screen_width,self.settings.screen_width))
         #Name the window Alien Invasion
         pygame.display.set_caption("Alien Invasion")
-        #Set the background color
-        self.bg_color = (230,230,230) #Light grey
+        #Set the background color from Settings
+        self.bg_color = (self.settings.bg_color) #Light grey
 
     def run_game(self):
         #Create infinate looop to run the game
