@@ -23,15 +23,16 @@ class Ship:
     
     #Create update method for ship's continuous movement
     def update(self):
-        #If moving right flag is True
-        if self.moving_right:
+        #If moving right flag is True and is in bounds
+        if self.moving_right and self.rect.right < self.screen_rect.right:
             #Increase ship's x by 1 when moving right
             self.x += self.settings.ship_speed
-        #If moving left flag is True
-        if self.moving_left:
+        #If moving left flag is True and is in bounds
+        if self.moving_left and self.rect.left > 0:
             #Decrease ship's x by 1 when moving left
             self.x -= self.settings.ship_speed
         #Update the ship's rect based on ship.x value
+        self.rect.x = self.x
 
 
     def blitme(self):
