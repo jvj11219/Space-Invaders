@@ -24,17 +24,26 @@ class AlienInvasion:
     def run_game(self):
         #Create infinate looop to run the game
         while True:
-            #Check for keyboard/mouse events
-            for event in pygame.event.get():
-                #Quit event (user clicks close on the window)
-                if event.type == pygame.QUIT:
-                    sys.exit()
-            #Redraw the screenw with specified bg_color
-            self.screen.fill(self.bg_color)
-            #Draw the instance of ship
-            self.ship.blitme()
-            #Display the most recently drawn screen
-            pygame.display.flip()
+            #Call check method to check for events
+            self._check_events()
+            #Call update method to update screen
+            self._update_screen()
+
+
+    def _check_events(self):
+        #Check for keyboard/mouse events
+        for event in pygame.event.get():
+            #Quit event (user clicks close on the window)
+            if event.type == pygame.QUIT:
+                sys.exit()
+    
+    def _update_screen(self):
+        #Redraw the screen with specified bg_color
+        self.screen.fill(self.bg_color)
+        #Draw the instance of ship
+        self.ship.blitme()
+        #Display the most recently drawn screen
+        pygame.display.flip() 
 
 if __name__ == '__main__':
     #Create an instance of AlienInvasion called ai

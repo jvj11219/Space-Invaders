@@ -1,2 +1,5 @@
 /.vscode
 /.venv
+.gitignore
+__pycache__/ship.cpython-37.pyc
+__pycache__/settings.cpython-37.pyc
