@@ -2,10 +2,11 @@
 import sys
 import pygame
 
-#Import settings, ship, and bullet
+#Import settings, ship, alien, and bullet
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
+from alien import Alien
 
 #Create overall class to manage game assets and behaviors
 class AlienInvasion:
@@ -23,8 +24,12 @@ class AlienInvasion:
         pygame.display.set_caption("Alien Invasion")
         #Create an instance of Ship
         self.ship = Ship(self)
-        #Creat a group of bullets
+        #Create a group of bullets
         self.bullets = pygame.sprite.Group()
+        #Create group of aliens
+        self.aliens = pygame.sprite.Group()
+        #Call reate alien fleet method
+        self._create_fleet()
         #Set the background color from Settings
         self.bg_color = (self.settings.bg_color) #Light gray
 
@@ -112,8 +117,15 @@ class AlienInvasion:
         #Draw bullets list cotents to screen
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
+        #Draw aliens
+        self.aliens.draw(self.screen)
         #Display the most recently drawn screen
         pygame.display.flip()
+    
+    def _create_fleet(self):
+       #Make an alien
+       alien = Alien(self)
+       self.aliens.add(alien)
 
 if __name__ == '__main__':
     #Create an instance of AlienInvasion called ai
