@@ -28,6 +28,8 @@ class AlienInvasion:
             self._check_events()
             #Call update method to update screen
             self._update_screen()
+            #Call ship's update method for movement
+            self.ship.update()
 
 
     def _check_events(self):
@@ -36,6 +38,28 @@ class AlienInvasion:
             #Quit event (user clicks close on the window)
             if event.type == pygame.QUIT:
                 sys.exit()
+            #Key pressed down
+            elif event.type == pygame.KEYDOWN:
+                #Right arrow key
+                if event.key == pygame.K_RIGHT:
+                    #Move ship right by setting moving_right flag to true
+                    self.ship.moving_right = True
+                #Left arrow key
+                if event.key == pygame.K_LEFT:
+                    #Move ship left by setting moving_left flag to true
+                    self.ship.moving_left = True
+            #Key unpressed
+            elif event.type == pygame.KEYUP:
+                #Right arrow key
+                if event.key == pygame.K_RIGHT:
+                    #Stop moving ship right by setting moving_right flag to flase
+                    self.ship.moving_right = False
+                #Left arrow key
+                if event.key == pygame.K_LEFT:
+                    #Stop moving ship left by setting moving_left flag to flase
+                    self.ship.moving_left = False
+
+
     
     def _update_screen(self):
         #Redraw the screen with specified bg_color
