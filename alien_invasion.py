@@ -1,6 +1,8 @@
+#Import requried libraries
 import sys
 import pygame
 
+#Create overall class to manage game assets and behaviors
 class AlienInvasion:
     def __init__(self):
         #Initalize game and required resources
@@ -11,8 +13,6 @@ class AlienInvasion:
         pygame.display.set_caption("Alien Invasion")
         #Set the background color
         self.bg_color = (230,230,230) #Light grey
-
-        
 
     def run_game(self):
         #Create infinate looop to run the game
