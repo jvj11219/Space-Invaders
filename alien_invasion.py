@@ -42,6 +42,8 @@ class AlienInvasion:
             self.ship.update()
             #Call update bullets method
             self._update_bullets()
+            #Call update aliens method
+            self._update_aliens()
             #Call update method to update screen
             self._update_screen()
             #Print the number of bullets on the screen
