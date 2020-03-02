@@ -225,8 +225,9 @@ class AlienInvasion:
         #Respond to the ship being hit by an alien
         #Check if ships remain
         if self.stats.ships_left > 0:
-            #Decrement ships_left
+            #Decrement ships_left, and update scoreboard
             self.stats.ships_left -= 1
+            self.sb.prep_ships()
             #Get rid of any remaining aliens and bullets
             self.aliens.empty()
             self.bullets.empty()
@@ -254,11 +255,12 @@ class AlienInvasion:
         if button_clicked and not self.stats.game_active:
             #Reset the game settings
             self.settings.initialize_dynamic_settings()
-            #Reset the game statistics, level, and score
+            #Reset the game statistics, level, ships, and score
             self.stats.reset_stats()
             self.stats.game_active = True
             self.sb.prep_score()
             self.sb.prep_level()
+            self.sb.prep_ships()
             #Get rid of any remaining aliens and bullets
             self.aliens.empty()
             #Create a new fleet and center the ship

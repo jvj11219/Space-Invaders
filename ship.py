@@ -1,11 +1,13 @@
 #Import library
 import pygame
+from pygame.sprite import Sprite
 
 #Create a class to manage the ship
-class Ship:
+class Ship(Sprite):
     #Define method of Ship to include self reference and current game instance
     def __init__(self,ai_game):
         #Initialize the ship and set its starting position
+        super().__init__()
         self.screen = ai_game.screen
         self.screen_rect = ai_game.screen.get_rect()
         #Load ship settings
