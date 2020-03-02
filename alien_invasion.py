@@ -3,11 +3,12 @@ import sys
 import pygame
 from time import sleep
 
-#Import settings, ship, alien, and bullet
+#Import settings, ship, alien, button, and bullet
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
+from button import Button
 
 #Import game stats
 from game_stats import GameStats
@@ -36,6 +37,8 @@ class AlienInvasion:
         self.aliens = pygame.sprite.Group()
         #Call reate alien fleet method
         self._create_fleet()
+        #Make the Play button.
+        self.play_button = Button(self, "Play")
         #Set the background color from Settings
         self.bg_color = (self.settings.bg_color) #Light gray
 
@@ -72,6 +75,10 @@ class AlienInvasion:
             elif event.type == pygame.KEYUP:
                 #Call keyup method
                 self._check_keyup_events(event)
+            #Mouse Button Pushed
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                self._check_play_button(mouse_pos)
 
     def _check_keydown_events(self,event):
         #Right arrow key (move right)
@@ -141,6 +148,9 @@ class AlienInvasion:
             bullet.draw_bullet()
         #Draw aliens
         self.aliens.draw(self.screen)
+        # Draw the play button if the game is inactive.
+        if not self.stats.game_active:
+            self.play_button.draw_button()
         #Display the most recently drawn screen
         pygame.display.flip()
     
@@ -223,6 +233,11 @@ class AlienInvasion:
                 #Treat this the same as if the ship got hit.
                 self._ship_hit()
                 break
+    
+    def _check_play_button(self, mouse_pos):
+        #Start a new game when the player clicks Play
+        if self.play_button.rect.collidepoint(mouse_pos):
+            self.stats.game_active = True
 
 if __name__ == '__main__':
     #Create an instance of AlienInvasion called ai
