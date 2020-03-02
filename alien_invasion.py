@@ -151,6 +151,10 @@ class AlienInvasion:
         alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
         self.aliens.add(alien)
 
+    def _update_aliens(self):
+        # Update the positions of all aliens in the fleet
+        self.aliens.update()
+
 if __name__ == '__main__':
     #Create an instance of AlienInvasion called ai
     ai = AlienInvasion()
