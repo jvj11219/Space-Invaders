@@ -141,10 +141,13 @@ class AlienInvasion:
             self.sb.check_high_score()
         #If all aliens destroyed...
         if not self.aliens:
-            # Destroy existing bullets and create new fleet.
+            #Destroy existing bullets and create new fleet.
             self.bullets.empty()
             self._create_fleet()
             self.settings.increase_speed()
+            #Increase level.
+            self.stats.level += 1
+            self.sb.prep_level()
 
     def _update_screen(self):
         #Redraw the screen with specified bg_color
@@ -251,10 +254,11 @@ class AlienInvasion:
         if button_clicked and not self.stats.game_active:
             #Reset the game settings
             self.settings.initialize_dynamic_settings()
-            #Reset the game statistics and score
+            #Reset the game statistics, level, and score
             self.stats.reset_stats()
             self.stats.game_active = True
             self.sb.prep_score()
+            self.sb.prep_level()
             #Get rid of any remaining aliens and bullets
             self.aliens.empty()
             #Create a new fleet and center the ship
